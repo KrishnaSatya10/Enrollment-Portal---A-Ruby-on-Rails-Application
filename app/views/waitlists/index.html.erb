@@ -1,0 +1,30 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Waitlists</h1>
+
+<% if is_admin? %>
+<%= link_to 'New Waitlist', new_waitlist_path , class: 'btn btn-primary' %>
+<%end%>
+<%= link_to 'Back', home_index_path , class: 'btn btn-primary' %>
+
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Student Name</th>
+      <th>Course Name</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @waitlists.each do |waitlist| %>
+      <tr>
+      <td><%= link_to waitlist.student.user.name , student_url(waitlist.student) %></td>
+        <td><%= link_to waitlist.course.name , course_url(waitlist.course) %></td>
+        <td><%= link_to 'Drop Waitlist', waitlist, method: :delete, data: { confirm: 'Are you sure?' } , class: 'btn btn-danger btn-sm'%></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<br>

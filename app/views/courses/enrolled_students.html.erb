@@ -1,0 +1,28 @@
+<p id="notice"><%= notice %></p>
+
+<h1><% if @course_name %> <%= @course_name %> <%end%> Enrollments</h1>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Email ID</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @enrolled_students.each do |enrolled| %>
+      <tr>
+        <td><%= enrolled.student.user.name %></td>
+        <td><%= enrolled.student.user.email %></td>
+        <td><%= link_to 'Drop', enrolled, method: :delete, data: { confirm: 'Are you sure?' } , class: 'btn btn-danger btn-sm' %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+<%= link_to 'Enroll Students', show_enroll_course_for_student_path(@course), class: 'btn btn-primary'%> 
+<%= link_to 'Back', :back , class: 'btn btn-primary' %>
+

@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Students</h1>
+
+<%= link_to 'New Student', new_student_path , class: 'btn btn-primary' %>
+<%= link_to 'Back', home_index_path , class: 'btn btn-primary' %>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Date of birth</th>
+      <th>Phone number</th>
+      <th>Major</th>
+      <th colspan="4"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @students.each do |student| %>
+      <tr>
+        <td><%= student.user.name %></td>
+        <td><%= student.date_of_birth %></td>
+        <td><%= student.phone_number %></td>
+        <td><%= student.major %></td>
+        <td><%= link_to 'Show', student , class: 'btn btn-primary btn-sm'%></td>
+        <td><%= link_to 'Edit', edit_student_path(student) , class: 'btn btn-primary btn-sm'%></td>
+        <td><%= link_to 'Destroy', student, method: :delete, data: { confirm: 'Are you sure?' } , class: 'btn btn-danger btn-sm'%></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
